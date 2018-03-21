@@ -1,0 +1,85 @@
+ <html>
+<head>
+    <title>Task Manager</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style rel="stylesheet" type="text/css">
+        body{
+            background-image: url('img/bg/bg_index.jpg');
+        }
+    </style>
+</head>
+<body>
+<div id="loading"></div>
+<div id="page">
+
+    <div class='container-fluid'>
+        <div class='row' id='bars'>
+            <div id='createTasks' class='col'>
+                <div id="new_task">
+
+                    <p>Create Task</p>
+                    <span class='error'>*</span>
+                    <input type='text' placeholder='Title' id='title'>
+                        <span class='error'></span><br>
+
+                    <span class='error'>*</span>
+                    <textarea type='text' placeholder='Description' id='desc'></textarea>
+                        <span class='error'></span><br>
+
+                        <span class='error'>*</span>
+                    Date:<input type="date" id="date" /><br>
+                        <span class='error'></span><br>
+                    Time:<input type="time" id="time" /><br>
+
+                    <button class='btner' id='create'>Create Task</button>
+                    
+                </div>
+            </div>
+
+            <div id='progresTasks' class='col'> <p>Task in Progress</p> </div>
+
+            <div id='completedTasks' class='col'> <p>Completed Tasks</p> </div>
+
+            <div id='expiredTasks' class='col'> <p>Expired Tasks</p> </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="js/libs/jquery-3.3.1.min.js"></script>
+<script src="js/loading.js"></script>
+<script src='js/ajax_request.js'></script>
+<script src='js/components.js'></script>
+<script src='js/script.js'></script>
+
+
+<script type="text/javascript">
+    loading();
+
+    //set input[type='date'] minumum dnel or error cheghni 
+    $('#date').attr({
+        "min" : format_date_y_m_d(new Date()),
+        'value' : format_date_y_m_d(new Date())
+    }); 
+
+    send_to_db = {};
+    send_to_db.get_all_tasks = true;
+    sendRequestJquery('GET','./api/task.php',send_to_db,function(response){
+        if (response.success) {
+            for(i = 0; i < response.data.length; i++){
+                var data = response.data[i];
+                task = new Task_new(data.direction, data.title , data.desc ,data.start_date , data.id_in_tasks);
+                task.start_timer();
+                tasker.push(task);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

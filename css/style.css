@@ -1,0 +1,110 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+	transition:1s ease-out;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+* {box-sizing: border-box}
+button:hover{
+    cursor: pointer;
+}
+button ,input,textarea{
+    outline: none;
+    border: none;
+}
+input,textarea  {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    font-size: 15px;
+}
+input:focus,textarea:focus{
+    background-color: #ddd;
+}
+input[type=number]{
+    width: 50px;
+    padding: 5px;
+}
+textarea {
+    resize:none;
+    width: 100%;
+}
+.btner {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}   
+.btner:hover {
+    opacity:1;
+}
+.expired{background-color: #C76666;}
+.col-3,.col   {
+    background-color: rgba(157, 183, 181, 0.56);
+    padding: 10px;
+    margin: 5px;
+}
+.error{color: red;font-size: 15px;}
+.item{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 0 0 5px 0 ; 
+}
+#bars{
+    align-items:flex-start;
+    color:white;
+}
+
+/*loading */
+#page {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255, 0.5);
+    background-image: url("../img/loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*loading end*/
+.timer_div{
+    display: flex;
+}
+.delete_button{
+    background-color: red;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
