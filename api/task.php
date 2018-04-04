@@ -17,12 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			and isset($_POST['id_in_tasks'])
 		){
 
-
-			$title = mysql_real_escape_string(trim($_POST['title']));
-			$desc = mysql_real_escape_string(trim($_POST['desc']));
-			$start_date = mysql_real_escape_string(trim($_POST['start_date']));
-			$id_in_tasks = mysql_real_escape_string(trim($_POST['id_in_tasks']));
-			$direction = mysql_real_escape_string(trim($_POST['direction']));
+			// print_r($_POST);
+			$title = trim($_POST['title']);
+			$desc = trim($_POST['desc']);
+			$start_date = trim($_POST['start_date']);
+			$id_in_tasks = trim($_POST['id_in_tasks']);
+			$direction = trim($_POST['direction']);
 
 			$sql = "INSERT INTO `task_list` (`title`,`desc`,`start_date`,`id_in_tasks`,`direction`) VALUES ('$title','$desc','$start_date','$id_in_tasks','$direction');"; 
 			// print_r($sql);
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	elseif(isset($_POST['change_direction'])){
 		if(isset($_POST['id_in_tasks']) and isset($_POST['direction'])){
 
-			$id_in_tasks = mysql_real_escape_string(trim($_POST['id_in_tasks']));
-			$direction = mysql_real_escape_string(trim($_POST['direction']));
+			$id_in_tasks = trim($_POST['id_in_tasks']);
+			$direction = trim($_POST['direction']);
 
 			$sql = "UPDATE `task_list` SET direction='$direction' WHERE id_in_tasks='$id_in_tasks'";
 			if($db->execute($sql)){
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	if(isset($_GET['delete_item'])){
 		if(isset($_GET['id_in_tasks'])){
 
-			$id_in_tasks = mysql_real_escape_string(trim($_GET['id_in_tasks']));
+			$id_in_tasks = trim($_GET['id_in_tasks']);
 			$sql = "DELETE FROM `task_list` WHERE `id_in_tasks` = '$id_in_tasks';";
 			$db->execute($sql);
 			$suc['success'] = true;
